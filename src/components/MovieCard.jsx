@@ -3,7 +3,7 @@ const MovieCard = ({movie}) => {
     const backEndUrl = import.meta.env.VITE_BACKEND_URL
 
     return (
-        <div className="card h-100">
+        <div className="card h-100 d-flex d-column">
         <img
           src={
             movie.image
@@ -19,8 +19,8 @@ const MovieCard = ({movie}) => {
             <h6>{movie.genre}</h6>
              <br /> {movie.director}
           </h5>
-          <p className="card-text">${movie.abstract}</p>
-          <a href="#" className="btn btn-secondary">
+          <p className="card-text flex-grow-1">{movie.abstract}</p>
+          <a href="#" className="btn btn-secondary mt-auto">
             Details
           </a>
         </div>
