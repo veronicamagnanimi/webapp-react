@@ -45,11 +45,17 @@ const MoviesPage = () => {
           />
           <button onClick={getMovies} className="btn btn-secondary">Search</button>
         </div>
+        {movies.length > 0 ? (
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
           {movies.map((curItem) => (
             <div className="col" key={curItem.id}><MovieCard movie={curItem} /></div>
           ))}
         </div>
+        ) : (
+            <div className="alert alert-warning">
+              Non abbiamo trovato nulla. Riprova
+            </div>
+          )}
       </section>
       </div>
     </>
