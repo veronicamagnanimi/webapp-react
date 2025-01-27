@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import ReviewCard from "../components/ReviewCard";
 
 const SingleFilm = () => {
   const { id } = useParams();
@@ -30,6 +31,13 @@ const SingleFilm = () => {
             <h5>Director: {singleMovie.director} - {singleMovie.release_year}</h5>
             <p className="font-italic">{singleMovie.abstract}</p>
             <p>Vote: {singleMovie.vote_avg}</p>
+        </section>
+        <section>
+            <div className="row row-cols-1 g-3">
+           {singleMovie.reviews.map(curItem => 
+            <ReviewCard key={curItem.id} review={curItem} />
+           )}
+            </div>
         </section>
         </>
     )}
