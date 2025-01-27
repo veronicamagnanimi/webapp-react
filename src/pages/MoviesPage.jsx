@@ -3,9 +3,14 @@ import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 
 const MoviesPage = () => {
+  const genres = ["Science Fiction", "Crime", "Romance", "Action"];
+  const years = [1972, 1997, 1999, 2010, 2014];
+
   //state
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
+  const [genre, setGenre] = useState("");
+  const [year, setYear] = useState("");
 
   //api
   const backEndUrl = import.meta.env.VITE_BACKEND_URL;
@@ -16,6 +21,15 @@ const MoviesPage = () => {
     if (search.length > 0) {
       params.search = search;
     }
+
+    if (genre !== "") {
+      params.genre = genre
+    }
+
+    if (year !== "") {
+      params.release_year = year
+    }
+
     axios.get(`${backEndUrl}/movies`, { params }).then((resp) => {
       setMovies(resp.data.data);
     });
@@ -36,8 +50,23 @@ const MoviesPage = () => {
       <section className="text-center">
         <p>Choose movies using the filter too</p>
         <div className="my-4 d-flex">
+          {/* Filtro per genere */}
+          <select className="border border-secondary text-secondary m3" name="" id="" value={genre} onChange={(event) => setGenre(event.target.value)}>
+            <option value="">Genre</option>
+            {genres.map((curItem, index) => (
+              <option key={index} value={curItem}>{curItem}</option>
+            ))}
+          </select>
+          {/* Filtro per anno */}
+          <select className="m3 border border-secondary text-secondary" name="" id="" value={year} onChange={(event) => setYear(event.target.value)}>
+            <option value="">Year</option>
+            {years.map((curItem, index) => (
+              <option key={index} value={curItem}>{curItem}</option>
+            ))}
+          </select>
+          {/* Campo di ricerca */}
           <input
-            className="form-control w-25 m3"
+            className="form-control border border-secondary text-secondary w-25 m3"
             type="search"
             placeholder="Keyword"
             value={search}
