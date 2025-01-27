@@ -1,3 +1,6 @@
+import SingleFilm from "../pages/SingleFilm";
+import { Link } from "react-router-dom";
+
 const MovieCard = ({movie}) => {
 
     const backEndUrl = import.meta.env.VITE_BACKEND_URL
@@ -20,9 +23,7 @@ const MovieCard = ({movie}) => {
              <br /> {movie.director}
           </h5>
           <p className="card-text flex-grow-1">{movie.abstract}</p>
-          <a href="#" className="btn btn-secondary mt-auto">
-            Details
-          </a>
+          <Link className="btn btn-secondary" to={`/movies/${movie.id}`}>{" "}Details</Link>
         </div>
       </div>
     )

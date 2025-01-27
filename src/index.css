@@ -16,6 +16,11 @@
     width: 90%;
 }
 
+.container-section {
+    margin: 0 auto;
+    width: 50%;
+}
+
 img {
     max-width: 100%;
 }
