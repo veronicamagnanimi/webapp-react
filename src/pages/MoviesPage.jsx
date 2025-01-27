@@ -14,48 +14,47 @@ const MoviesPage = () => {
 
   //error's state
   const [warning, setWarning] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   //api
   const backEndUrl = import.meta.env.VITE_BACKEND_URL;
 
   //function params + axios
-  const getMovies = () => {
-    // Controllo se mancano i filtri
-    if (!genre && !year) {
-      setWarning("Please select at least one filter (genre or year).");
-    } else {
-      setWarning(""); // Rimuove l'avviso se ci sono filtri
-    }
-  
-    setIsLoading(true);
-  
-    // Configura i parametri della richiesta
-    const params = {};
-    if (search.length > 0) {
-      params.search = search;
-    }
-  
-    if (genre !== "") {
-      params.genre = genre;
-    }
-  
-    if (year !== "") {
-      params.release_year = year;
-    }
-  
-    // Effettua la richiesta
-    axios
-      .get(`${backEndUrl}/movies`, { params })
-      .then((resp) => {
-        setMovies(resp.data.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching movies:", err);
-        setIsLoading(false);
-      });
-  };
+ const getMovies = () => {
+
+  setIsLoading(true);
+
+  //params
+  const params = {};
+  if (search.length > 0) {
+    params.search = search;
+  }
+
+  if (genre !== "") {
+    params.genre = genre;
+  }
+
+  if (year !== "") {
+    params.release_year = year;
+  }
+
+  //axios
+  axios
+    .get(`${backEndUrl}/movies`, { params })
+    .then((resp) => {
+      setMovies(resp.data.data);
+      setIsLoading(false);
+    })
+};
+
+//function warning
+const getError = () => {
+  if (!genre && !year) {
+    setWarning("Please select at least one filter (genre or year).");
+    setTimeout(() => setWarning(""), 3000);
+  } 
+  getMovies();
+}
 
   //use effect
   useEffect(() => {
@@ -109,13 +108,13 @@ const MoviesPage = () => {
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
-            <button onClick={getMovies} className="btn btn-secondary">
+            <button onClick={getError} className="btn btn-secondary">
               Search
             </button>
           </div>
           {warning && <div className="alert alert-warning">{warning}</div>}
           {!isLoading && movies.length === 0 && (<div className="alert alert-warning">
-              Non abbiamo trovato nulla. Riprova
+              No matching movies. Try again
             </div>)}
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
               {movies.map((curItem) => (
