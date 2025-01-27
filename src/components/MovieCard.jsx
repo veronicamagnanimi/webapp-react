@@ -23,7 +23,7 @@ const MovieCard = ({movie}) => {
              <br /> {movie.director}
           </h5>
           <p className="card-text flex-grow-1">{movie.abstract}</p>
-          <Link className="btn btn-secondary" to={`/movies/${movie.id}`}>{" "}Details</Link>
+          <Link className="btn btn-secondary" to={`/movies/${movie.slug}`}>{" "}Details</Link>
         </div>
       </div>
     )

@@ -4,7 +4,7 @@ import axios from "axios";
 import ReviewCard from "../components/ReviewCard";
 
 const SingleFilm = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   //state
   const [singleMovie, setSingleMovie] = useState(null);
@@ -14,7 +14,7 @@ const SingleFilm = () => {
   
   //use effect
   useEffect(() => {
-    axios.get(`${backEndUrl}/movies/${id}`).then((resp) => {
+    axios.get(`${backEndUrl}/movies/${slug}`).then((resp) => {
       setSingleMovie(resp.data.data);
     });
   }, []);
