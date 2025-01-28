@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ReviewCard from "../components/ReviewCard";
+import ReviewForm from "../components/ReviewForm";
 
 const SingleFilm = () => {
   const { slug } = useParams();
@@ -38,6 +39,14 @@ const SingleFilm = () => {
             <ReviewCard key={curItem.id} review={curItem} />
            )}
             </div>
+        </section>
+        <section>
+          <div className="row justify-content-center">
+            <div className="col-8 my-3 text-center">
+              <h4>Write your reviews!</h4>
+              <ReviewForm />
+            </div>
+          </div>
         </section>
         </>
     )}
