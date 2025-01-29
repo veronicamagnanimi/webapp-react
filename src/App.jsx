@@ -3,6 +3,7 @@ import AppLayout from "./layout/AppLayout"
 import HomePage from "./pages/HomePage"
 import MoviesPage from "./pages/MoviesPage"
 import SingleFilm from "./pages/SingleFilm"
+import CreateMoviePage from "./components/CreateMoviePage"
 
 function App() {
  
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<MoviesPage />} />
         <Route path="/movies/:slug" element={<SingleFilm />} />
+        <Route path="/movies/create" element={<CreateMoviePage />} />
         </Route>
       </Routes>
       </BrowserRouter>

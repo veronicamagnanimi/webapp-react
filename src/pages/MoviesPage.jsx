@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 
 const MoviesPage = () => {
@@ -69,6 +70,10 @@ const getError = () => {
         </section>
         <section className="text-center">
           <p>Choose movies using the filter too</p>
+          {/* Creare film */}
+          <section>
+          <Link to="/movies/create" className="btn btn-secondary">Create a new Movie!</Link>
+          </section>
           <div className="my-4 d-flex">
             {/* Filtro per genere */}
             <select
