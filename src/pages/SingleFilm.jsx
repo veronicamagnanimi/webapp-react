@@ -33,8 +33,11 @@ const SingleFilm = () => {
       .then((resp) => {
         console.log(resp);
         setFormData(initialValues); 
+        getMovie();
       });
   };
+
+  
   
   //use effect
   useEffect(() => {

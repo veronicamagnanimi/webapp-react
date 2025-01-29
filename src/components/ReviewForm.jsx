@@ -8,11 +8,11 @@ const ReviewForm = ({formData, setFormData, onSubmitFunction}) => {
 
   //event function
   const setValue = (event) => {
-    const {value, name} = event.target;
-//   const newFormData = {...formData};
-//   newFormData[name] = value;
-//   setFormData = (newFormData);
-setFormData({ ...formData, [name]: value });
+    const value = event.target.value;
+    const fieldName = event.target.name;
+    const newFormData = { ...formData };
+    newFormData[fieldName] = value;
+    setFormData(newFormData);
   }
 
   const isDataValid = () => {
